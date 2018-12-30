@@ -1,3 +1,6 @@
+from data_structure.queue import Queue
+import unittest
+
 class TestQueue(unittest.TestCase):
     
     def setUp(self):
@@ -36,7 +39,7 @@ class TestQueue(unittest.TestCase):
     
     def test_description(self):
         self.enqueue_test_values()
-        self.assertEqual("{}".format(self.queue), "[1, 2, 3]")
+        self.assertEqual("{}".format(self.queue), "[1 <-> 2 <-> 3]")
     
 suite = unittest.TestLoader().loadTestsFromModule(TestQueue())
 unittest.TextTestRunner().run(suite)

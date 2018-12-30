@@ -1,4 +1,4 @@
-from cs_concept.data_structure.stack import Stack
+from data_structure.stack import Stack
 import unittest
 
 class TestStack(unittest.TestCase):
@@ -61,7 +61,7 @@ class TestStack(unittest.TestCase):
         
     def test_description(self):
         self.push_test_values()
-        self.assertEqual("{}".format(self.stack), "[3, 2, 1]")
+        self.assertEqual("{}".format(self.stack), "[3 <-> 2 <-> 1]")
     
 suite = unittest.TestLoader().loadTestsFromModule(TestStack())
 unittest.TextTestRunner().run(suite)
