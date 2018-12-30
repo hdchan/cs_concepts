@@ -22,9 +22,9 @@ class Queue(LinkedListBase):
             raise Exception("There's nothing to dequeue!")
             
         dequeued_node = self.head_node
-        self.head_node = dequeued_node.next_node
+        self.head_node = dequeued_node.next
         if (self.head_node != None):
-            self.head_node.previous_node = None
+            self.head_node.previous = None
         self.node_count -= 1
         return dequeued_node
         

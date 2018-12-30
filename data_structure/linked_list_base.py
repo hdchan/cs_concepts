@@ -13,8 +13,8 @@ class LinkedListBase(object):
         if (counter == idx): 
             return current_node
     
-        while (current_node.next_node != None):
-            current_node = current_node.next_node
+        while (current_node.next != None):
+            current_node = current_node.next
             counter += 1
             if (counter == idx):
                 return current_node

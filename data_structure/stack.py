@@ -29,13 +29,13 @@ class Stack(LinkedListBase):
             self.tail_node = None
         else:
             popped_node = self.head_node
-            self.head_node = self.head_node.next_node
-            self.head_node.previous_node = None
+            self.head_node = self.head_node.next
+            self.head_node.previous = None
             
         self.node_count -= 1
         
-        popped_node.next_node = None
-        popped_node.previous_node = None
+        popped_node.next = None
+        popped_node.previous = None
         
         return popped_node
     
