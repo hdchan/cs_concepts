@@ -1,29 +1,17 @@
-from .binary_tree_node import BinaryTreeNode as Node
+from .binary_tree import BinaryTree
 
-class BinarySearchTree(object):
+class BinarySearchTree(BinaryTree):
 
-    def __init__(self, value = None):
-        if (value != None):
-            self.root = Node(value)
-        else:
-            self.root = None
-    
     def insert(self, value):
         self.root = self._insert(self.root, value)
 
     def _insert(self, node, value):
-        if (node == None):
-            return Node(value)
+        if node == None:
+            return self._node_for(value)
 
-        if (value < node.value):
+        if value < node.value:
             node.left = self._insert(node.left, value)
         else:
             node.right = self._insert(node.right, value)
             
         return node
-
-    def __str__(self):
-        if (self.root == None):
-            return "empty tree"
-        
-        return "{}".format(self.root)

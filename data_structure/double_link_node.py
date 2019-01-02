@@ -12,7 +12,7 @@ class DoubleLinkNode(SingleLinkNode):
 
     def __str__(self):
 
-        if (self.next == None):
+        if self.next == None:
             return "{}".format(self.value)
         
         return "{} <-> {}".format(self.value, self.next)  

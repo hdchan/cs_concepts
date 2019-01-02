@@ -1,7 +1,9 @@
-class SingleLinkNode(object):
+from .node import Node
+
+class SingleLinkNode(Node):
     
     def __init__(self, value):
-        self.value = value
+        super().__init__(value)
         self.next = None
         
     def append_node(self, node):
@@ -9,7 +11,7 @@ class SingleLinkNode(object):
 
     def __str__(self):
 
-        if (self.next == None):
+        if self.next == None:
             return "{}".format(self.value)
         
         return "{} -> {}".format(self.value, self.next)  
