@@ -5,7 +5,7 @@ class AVLTree(BinarySearchTree):
 
     def _insert(self, node, value):
         if node == None:
-            return self._node_for(value)
+            return self._create_node_for(value)
 
         if value < node.value:
             node.left = self._insert(node.left, value)
@@ -63,11 +63,11 @@ class AVLTree(BinarySearchTree):
         return self._left_rotate(node)
     
     def _left_right_rotate(self, node):
-        if (node.left == None):
+        if node.left == None:
             return node
         
         node.left = self._left_rotate(node.left)
         return self._right_rotate(node)
 
-    def _node_for(self, value):
+    def _create_node_for(self, value):
         return AVLTreeNode(value)

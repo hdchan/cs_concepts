@@ -6,6 +6,33 @@ class BinaryTreeNode(Node):
         self.left = None
         self.right = None
 
+    def traverse_in_order(self, visit):
+        if self.left != None:
+            self.left.traverse_in_order(visit)
+
+        visit(self.value)
+
+        if self.right != None:
+            self.right.traverse_in_order(visit)
+
+    def traverse_pre_order(self, visit):
+        visit(self.value)
+
+        if self.left != None:
+            self.left.traverse_pre_order(visit)
+
+        if self.right != None:
+            self.right.traverse_pre_order(visit)
+        
+    def traverse_post_order(self, visit):
+        if self.left != None:
+            self.left.traverse_post_order(visit)
+
+        if self.right != None:
+            self.right.traverse_post_order(visit)
+
+        visit(self.value)
+
     def __str__(self):
         return self._diagram(self)
 

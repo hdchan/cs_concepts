@@ -7,7 +7,7 @@ class BinarySearchTree(BinaryTree):
 
     def _insert(self, node, value):
         if node == None:
-            return self._node_for(value)
+            return self._create_node_for(value)
 
         if value < node.value:
             node.left = self._insert(node.left, value)

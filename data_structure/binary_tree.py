@@ -4,11 +4,11 @@ class BinaryTree(object):
 
     def __init__(self, value = None):
         if value != None:
-            self.root = self._node_for(value)
+            self.root = self._create_node_for(value)
         else:
             self.root = None
 
-    def _node_for(self, value):
+    def _create_node_for(self, value):
         return Node(value)
 
     def __str__(self):
