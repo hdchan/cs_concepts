@@ -1,6 +1,6 @@
-from .single_link_node import SingleLinkNode
+from .linked_list_node import LinkedListNode
 
-class DoubleLinkNode(SingleLinkNode):
+class LinkedListNodeDouble(LinkedListNode):
     
     def __init__(self, value):
         super().__init__(value)

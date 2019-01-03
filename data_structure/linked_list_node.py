@@ -1,13 +1,10 @@
 from .node import Node
 
-class SingleLinkNode(Node):
+class LinkedListNode(Node):
     
     def __init__(self, value):
         super().__init__(value)
         self.next = None
-        
-    def append_node(self, node):
-        self.next = node
 
     def __str__(self):
 

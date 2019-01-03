@@ -1,46 +1,23 @@
-from .double_link_node import DoubleLinkNode as Node  # TODO: May want to refactor to dynamically use single or double link node
+# from .linked_list_node_double import LinkedListNodeDouble as Node  # TODO: May want to refactor to dynamically use single or double link node
 from .linked_list import LinkedList
 
-class Stack(LinkedList):
+class Stack(object):
+
+    def __init__(self):
+        self.linked_list = LinkedList()
 
     def push(self, value):
-        new_node = Node(value)
-        self._push(new_node)
+        self.linked_list.push(value)
 
-    def _push(self, node):
-        if self.head_node == None:
-            self.head_node = node
-            self.tail_node = node
-        else:
-            node.append_node(self.head_node)
-            self.head_node = node
-        
-        self.node_count += 1
-        
     def pop(self):
-        if self.node_count == 0:
-            raise Exception("There's nothing to pop!")
-        
-        popped_node = None
-        
-        if self.head_node == self.tail_node:
-            popped_node = self.head_node
-            self.head_node = None
-            self.tail_node = None
-        else:
-            popped_node = self.head_node
-            self.head_node = self.head_node.next
-            self.head_node.previous = None
-            
-        self.node_count -= 1
-        
-        popped_node.next = None
-        popped_node.previous = None
-        
-        return popped_node
+        return self.linked_list.remove_head()
     
     def peek(self):
-        return self.head_node
+        return self.linked_list.head
+
+    def is_empty(self):
+        return self.linked_list.is_empty()
     
-    
+    def __str__(self):
+        return "[{}]".format(self.linked_list.head)
      
