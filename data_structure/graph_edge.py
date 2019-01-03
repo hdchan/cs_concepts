@@ -6,7 +6,7 @@ class EdgeType(Enum):
     
 class GraphEdge(object):
 
-    def __init__(self, source, destination, weight):
+    def __init__(self, source, target, weight):
         self.source = source
-        self.destination = destination
+        self.target = target
         self.weight = weight

@@ -5,10 +5,12 @@ class GraphAdjacencyList(object):
 
     def __init__(self):
         self.adjacencies = {}
+        self.vertexies = {}
 
     def create_vertex(self, data):
         vertex = Node(data)
         self.adjacencies[id(vertex)] = []
+        self.vertexies[id(vertex)] = vertex
         return vertex
 
     def add_directed_edge(self, source, target, weight):
@@ -31,8 +33,31 @@ class GraphAdjacencyList(object):
             return []
         return adjacencies
 
+    def weight_for(self, source, target):
+        edges = self.edges_for(source)
+        found_edge = None
+        for edge in edges:
+            if edge.target == target:
+                found_edge = edge
+                break
+        if found_edge != None:
+            return found_edge.weight
+        return None
+
     def __str__(self):
-        pass
+        result = ""
+        for vertex, edges in self.adjacencies.items():
+            edge_string = ""
+            if len(edges) == 0:
+                continue
+            for idx, edge in enumerate(edges):
+                if idx != len(edges) - 1:
+                    edge_string = "{}{}, ".format(edge_string, edge.target)
+                else:
+                    edge_string = "{}{}".format(edge_string, edge.target)
+            
+            result = "{}{}  ---> [ {} ]\n".format(result, self.vertexies[vertex], edge_string)
+        return result
     
 
 
