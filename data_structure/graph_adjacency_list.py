@@ -1,6 +1,7 @@
 from .node import Node
 from .graph_edge import EdgeType, GraphEdge
-
+from .queue import Queue
+from .stack import Stack
 class GraphAdjacencyList(object):
 
     def __init__(self):
@@ -21,7 +22,7 @@ class GraphAdjacencyList(object):
         self.add_directed_edge(first, second, weight)
         self.add_directed_edge(second, first, weight)
 
-    def add(self, edgeType, source, target, weight):
+    def add(self, edgeType, source, target, weight = 1):
         if edgeType == EdgeType.DIRECTED:
             self.add_directed_edge(source, target, weight)
         elif edgeType == EdgeType.UNDIRECTED:
@@ -43,6 +44,46 @@ class GraphAdjacencyList(object):
         if found_edge != None:
             return found_edge.weight
         return None
+
+    def breadth_first_search(self, source, visit):
+        # uses a queue
+        queue = Queue()
+        visited = []
+
+        queue.enqueue(source)
+        
+        while queue.is_empty() == False:
+            current_node = queue.dequeue().value
+            
+            visit(current_node)
+            visited.append(current_node)
+
+            edges = self.edges_for(current_node)
+            
+            for edge in edges:
+                if edge.target not in visited:
+                    visited.append(edge.target)
+                    queue.enqueue(edge.target)
+            
+    def depth_first_search(self, source, visit):
+        # uses a stack
+        stack = Stack()
+        visited = []
+
+        stack.push(source)
+
+        while stack.is_empty() == False:
+            current_node = stack.pop().value
+
+            visit(current_node)
+            visited.append(current_node)
+
+            edges = self.edges_for(current_node)
+
+            for edge in edges:
+                if edge.target not in visited:
+                    visited.append(edge.target)
+                    stack.push(edge.target)
 
     def __str__(self):
         result = ""

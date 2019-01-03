@@ -1,4 +1,4 @@
-from .linked_list_node_double import LinkedListNodeDouble as Node
+from .linked_list_node import LinkedListNode as Node
 from .linked_list import LinkedList
 
 class Queue(object):

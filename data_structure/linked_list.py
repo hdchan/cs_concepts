@@ -29,7 +29,12 @@ class LinkedList(object):
     def remove_head(self):
         head = self.head
         if head != None:
-            self.head = head.next
+            if head.next == None:
+                self.head = None
+                self.tail = None
+            else:
+                self.head = head.next
+                    
             self.node_count -= 1
             return head
 
