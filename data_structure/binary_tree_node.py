@@ -10,13 +10,13 @@ class BinaryTreeNode(Node):
         if self.left != None:
             self.left.traverse_in_order(visit)
 
-        visit(self.value)
+        visit(self)
 
         if self.right != None:
             self.right.traverse_in_order(visit)
 
     def traverse_pre_order(self, visit):
-        visit(self.value)
+        visit(self)
 
         if self.left != None:
             self.left.traverse_pre_order(visit)
@@ -31,7 +31,7 @@ class BinaryTreeNode(Node):
         if self.right != None:
             self.right.traverse_post_order(visit)
 
-        visit(self.value)
+        visit(self)
 
     def __str__(self):
         return self._diagram(self)

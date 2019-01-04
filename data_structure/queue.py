@@ -12,6 +12,9 @@ class Queue(object):
     def dequeue(self):
         return self.linked_list.remove_head()
 
+    def peek(self):
+        return self.linked_list.head
+
     def is_empty(self):
         return self.linked_list.is_empty()
     
