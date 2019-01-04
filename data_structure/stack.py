@@ -1,4 +1,3 @@
-# from .linked_list_node_double import LinkedListNodeDouble as Node  # TODO: May want to refactor to dynamically use single or double link node
 from .linked_list import LinkedList
 
 class Stack(object):
