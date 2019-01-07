@@ -9,7 +9,7 @@ class BinaryTreeNode(Node):
     def traverse_in_order(self, visit):
         if self.left != None:
             self.left.traverse_in_order(visit)
-
+        
         visit(self)
 
         if self.right != None:
