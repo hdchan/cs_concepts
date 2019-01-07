@@ -5,12 +5,15 @@ import copy
 import time
 
 def bubble_sort(array, debug=False):
+    copy_array = copy.deepcopy(array)
     iter_count = 0
     start = time.time()
+    
     did_sort = True
-    copy_array = copy.deepcopy(array)
+
     while did_sort == True:
         did_sort = False
+
         for idx, current_element in enumerate(copy_array):
             if (idx + 1 == len(copy_array)):
                 continue
@@ -26,6 +29,7 @@ def bubble_sort(array, debug=False):
                 if debug:
                     print("Iteration {}: {} -- nothing to swap".format(iter_count, copy_array))
             iter_count += 1
+
     end = time.time()
 
     if debug == True:
@@ -36,5 +40,5 @@ def bubble_sort(array, debug=False):
         Duration: {}
         Iteration Count: {}
         """.format(start, end, end - start, iter_count))
-    print(debug)
+
     return copy_array
