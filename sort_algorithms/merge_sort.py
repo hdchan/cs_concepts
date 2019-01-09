@@ -7,7 +7,7 @@ def merge_sort(array, debug=False):
     copy_array = copy.deepcopy(array)
     start = time.time()
 
-    copy_array = _merge_sort(copy_array)
+    copy_array = _merge_sort(copy_array, debug)
 
     end = time.time()
 
@@ -21,45 +21,44 @@ def merge_sort(array, debug=False):
 
     return copy_array
 
-def _merge_sort(array):
+def _merge_sort(array, debug=False):
     if len(array) == 1:
         print(array)
         return array
 
     mid_point = int(len(array) / 2)
 
-    left = _merge_sort(array[:mid_point])
-    right = _merge_sort(array[mid_point:])
+    left = _merge_sort(array[:mid_point], True)
+    right = _merge_sort(array[mid_point:], True)
     
     left_pointer = 0
     right_pointer = 0
     sorted_array = []
     
+    while left_pointer < len(left) and right_pointer < len(right):
+        left_value = left[left_pointer]
+        right_value = right[right_pointer]
 
-    for idx in range(0, (len(left) + len(right))):
-        left_value = None
-        right_value = None
-
-        if left_pointer < len(left):
-            left_value = left[left_pointer]
-        if right_pointer < len(right):
-            right_value = right[right_pointer]
-            
-        if right_value != None and left_value != None:
-            if left_value < right_value:
-                sorted_array.append(left_value)
-                left_pointer += 1
-            else: 
-                sorted_array.append(right_value)
-                right_pointer += 1
-        elif right_value == None:
+        if left_value < right_value:
             sorted_array.append(left_value)
             left_pointer += 1
+        elif left_value > right_value:
+            sorted_array.append(right_value)
+            right_pointer += 1
         else:
+            sorted_array.append(left_value)
+            left_pointer += 1
             sorted_array.append(right_value)
             right_pointer += 1
             
-    print(sorted_array)
+    if left_pointer < len(left):
+        sorted_array += left[left_pointer:]
+    elif right_pointer < len(right):
+        sorted_array += right[right_pointer:]
+
+    if debug:
+        print(sorted_array)
+
     return sorted_array
 
     
