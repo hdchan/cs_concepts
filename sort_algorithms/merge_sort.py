@@ -2,10 +2,10 @@
 # O(n log n)
 import time
 
-def merge_sort(array, debug=False):
+def merge_sort(array, debug=False, verbose=False):
     start = time.time()
 
-    sorted_array = _merge_sort(array, debug)
+    sorted_array = _merge_sort(array, debug, verbose)
 
     end = time.time()
 
@@ -19,9 +19,9 @@ def merge_sort(array, debug=False):
 
     return sorted_array
 
-def _merge_sort(array, debug=False):
+def _merge_sort(array, debug=False, verbose=False):
     if len(array) == 1:
-        if debug:
+        if debug and verbose:
             print(array)
 
         return array
@@ -56,7 +56,7 @@ def _merge_sort(array, debug=False):
     elif right_pointer < len(right):
         sorted_array += right[right_pointer:]
 
-    if debug:
+    if debug and verbose:
         print(sorted_array)
 
     return sorted_array

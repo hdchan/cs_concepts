@@ -3,7 +3,7 @@
 # O(n^2) time complexity
 import time
 
-def bubble_sort(array, debug=False):
+def bubble_sort(array, debug=False, verbose=False):
     iter_count = 0
     start = time.time()
     
@@ -21,10 +21,10 @@ def bubble_sort(array, debug=False):
                 array[idx] = next_element
                 array[idx + 1] = temp
                 did_sort = True
-                if debug:
+                if debug and verbose:
                     print("Iteration {}: {} -- swapped {} and {}".format(iter_count, array, current_element, next_element))
             else:
-                if debug:
+                if debug and verbose:
                     print("Iteration {}: {} -- nothing to swap".format(iter_count, array))
             iter_count += 1
 

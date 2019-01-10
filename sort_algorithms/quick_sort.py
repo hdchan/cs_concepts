@@ -4,10 +4,10 @@ import time
 import random
 
 # randomly picks a value to pivot
-def quick_sort_naive(array, debug=False):
+def quick_sort_naive(array, debug=False, verbose=False):
     start = time.time()
 
-    sorted_array = _quick_sort_naive(array, debug)
+    sorted_array = _quick_sort_naive(array, debug, verbose)
 
     end = time.time()
 
@@ -21,9 +21,9 @@ def quick_sort_naive(array, debug=False):
 
     return sorted_array    
 
-def _quick_sort_naive(array, debug=False):
+def _quick_sort_naive(array, debug=False, verbose=False):
     if len(array) <= 1:
-        if debug and len(array) == 1:
+        if debug and verbose and len(array) == 1:
             print(array)
 
         return array
@@ -31,7 +31,7 @@ def _quick_sort_naive(array, debug=False):
     pivot_index = random.randint(0, len(array) - 1)
     pivot_value = array[pivot_index]
     
-    if debug:
+    if debug and verbose:
         print("Picked pivot {} at index {} from {}".format(pivot_value, pivot_index, array))
 
     low = []
@@ -48,7 +48,7 @@ def _quick_sort_naive(array, debug=False):
 
     merged = _quick_sort_naive(low, debug) + _quick_sort_naive(equal, debug) + _quick_sort_naive(high, debug)
 
-    if debug:
+    if debug and verbose:
         print(merged)
 
     return merged
@@ -56,10 +56,10 @@ def _quick_sort_naive(array, debug=False):
 #######################################
 
 # picking last value in array
-def quick_sort_lomuto(array, debug=False):
+def quick_sort_lomuto(array, debug=False, verbose=False):
     start = time.time()
 
-    _quick_sort_lomuto(array, 0, len(array) - 1, debug)
+    _quick_sort_lomuto(array, 0, len(array) - 1, debug, verbose)
 
     end = time.time()
 
@@ -72,13 +72,13 @@ def quick_sort_lomuto(array, debug=False):
         """.format(start, end, end - start))
 
 
-def _quick_sort_lomuto(array, low, high, debug=False):
+def _quick_sort_lomuto(array, low, high, debug=False, verbose=False):
     if low < high:
-        pivot_index = _partition_lomuto(array, low, high, debug)
-        _quick_sort_lomuto(array, low, pivot_index - 1, debug)
-        _quick_sort_lomuto(array, pivot_index + 1, high, debug)
+        pivot_index = _partition_lomuto(array, low, high, debug, verbose)
+        _quick_sort_lomuto(array, low, pivot_index - 1, debug, verbose)
+        _quick_sort_lomuto(array, pivot_index + 1, high, debug, verbose)
 
-def _partition_lomuto(array, low, high, debug=False):
+def _partition_lomuto(array, low, high, debug=False, verbose=False):
     
     pivot = array[high]
     pivot_index = 0
@@ -98,10 +98,10 @@ def _partition_lomuto(array, low, high, debug=False):
 
 #######################################
 
-def quick_sort_median(array, debug=False):
+def quick_sort_median(array, debug=False, verbose=False):
     start = time.time()
 
-    _quick_sort_median(array, 0, len(array) - 1, debug)
+    _quick_sort_median(array, 0, len(array) - 1, debug, verbose)
 
     end = time.time()
 
@@ -113,22 +113,22 @@ def quick_sort_median(array, debug=False):
         Duration: {}
         """.format(start, end, end - start))
 
-def _quick_sort_median(array, low, high, debug=False):
+def _quick_sort_median(array, low, high, debug=False, verbose=False):
     if low < high:
         # sort low, middle and high
-        center_index = _median_of_three(array, low, high, debug)
+        center_index = _median_of_three(array, low, high, debug, verbose)
         # swap middle and high
         center_value = array[center_index]
         array[center_index] = array[high]
         array[high] = center_value
         # call lomuto sort
-        pivot_index = _partition_lomuto(array, low, high, debug)
-        _quick_sort_lomuto(array, low, pivot_index - 1, debug)
-        _quick_sort_lomuto(array, pivot_index + 1, high, debug)
+        pivot_index = _partition_lomuto(array, low, high, debug, verbose)
+        _quick_sort_lomuto(array, low, pivot_index - 1, debug, verbose)
+        _quick_sort_lomuto(array, pivot_index + 1, high, debug, verbose)
 
-def _median_of_three(array, low, high, debug=False):
+def _median_of_three(array, low, high, debug=False, verbose=False):
     # return median value of three values
-    if debug:
+    if debug and verbose:
         print("Array before median swap {}".format(array))
     center = int((low + high) / 2)
     if array[low] > array[center]:
@@ -143,6 +143,6 @@ def _median_of_three(array, low, high, debug=False):
         temp_value = array[high]
         array[high] = array[center]
         array[center] = temp_value
-    if debug:
+    if debug and verbose:
         print("Array before median swap {}".format(array))
     return center

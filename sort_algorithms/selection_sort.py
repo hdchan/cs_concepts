@@ -2,7 +2,7 @@
 # O(n^2) time complexity
 import time
 
-def selection_sort(array, debug=False):
+def selection_sort(array, debug=False, verbose=False):
     iter_count = 0
     start = time.time()
 
@@ -16,7 +16,7 @@ def selection_sort(array, debug=False):
                 lowest_value = current_value
                 lowest_value_index = inner_idx
             
-            if debug:
+            if debug and verbose:
                 print("Iteration {}: {}".format(iter_count, array))
 
             iter_count += 1
