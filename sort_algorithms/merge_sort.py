@@ -1,13 +1,11 @@
 # we want to divide and conquer our sorting
 # O(n log n)
-import copy
 import time
 
 def merge_sort(array, debug=False):
-    copy_array = copy.deepcopy(array)
     start = time.time()
 
-    copy_array = _merge_sort(copy_array, debug)
+    sorted_array = _merge_sort(array, debug)
 
     end = time.time()
 
@@ -19,17 +17,19 @@ def merge_sort(array, debug=False):
         Duration: {}
         """.format(start, end, end - start))
 
-    return copy_array
+    return sorted_array
 
 def _merge_sort(array, debug=False):
     if len(array) == 1:
-        print(array)
+        if debug:
+            print(array)
+
         return array
 
     mid_point = int(len(array) / 2)
 
-    left = _merge_sort(array[:mid_point], True)
-    right = _merge_sort(array[mid_point:], True)
+    left = _merge_sort(array[:mid_point], debug)
+    right = _merge_sort(array[mid_point:], debug)
     
     left_pointer = 0
     right_pointer = 0
